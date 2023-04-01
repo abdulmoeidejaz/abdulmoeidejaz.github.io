@@ -60,11 +60,15 @@ const bodyEl = document.getElementById("body")
 
 const getBackground = async (city) => {
 
-
+    if(city === "Faisalabad"){
+        let response = await fetch(`https://api.unsplash.com//search/photos?client_id=8Uzk2af1CnbW9ecswytWcW5-qxHL2AF2Czlup00frwA&query=${city}+clock+tower`)
+        let data = await response.json()
+        bodyEl.style.backgroundImage = `url('${data.results[0].urls.full}')`
+    } else{
         let response = await fetch(`https://api.unsplash.com//search/photos?client_id=8Uzk2af1CnbW9ecswytWcW5-qxHL2AF2Czlup00frwA&query=${city}`)
         let data = await response.json()
         bodyEl.style.backgroundImage = `url('${data.results[0].urls.full}')`
-    
+    }
     // console.log(data.results[0].urls.full)
    
 
