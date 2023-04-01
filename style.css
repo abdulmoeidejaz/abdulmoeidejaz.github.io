@@ -97,7 +97,7 @@ button:hover{
     background-color: #23272bea;
 }
 
-@media (max-width:375px) {
+@media (max-width:425px) {
 
     main {
         display: flex;
