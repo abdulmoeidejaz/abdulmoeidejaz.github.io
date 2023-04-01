@@ -10,10 +10,10 @@ const apiKey = "eeccf137789c6df5effe34534a5b2e8c"
 const url = "https://api.openweathermap.org/data/2.5/weather?q="
 
 
-const getWeather = async (value)=>{
-   
-        let response = await fetch(`${url}${value}&appid=${apiKey}&units=metric`)
-        let data = await response.json()
+const getWeather = async (value) => {
+
+    let response = await fetch(`${url}${value}&appid=${apiKey}&units=metric`)
+    let data = await response.json()
 
     // console.log(data.weather[0].description)
     cityTitle.innerText = value
@@ -25,28 +25,28 @@ const getWeather = async (value)=>{
 }
 
 
-const search = ()=>{
-    
+const search = () => {
+
     let value = city.value
-    if(value == ""){
+    if (value == "") {
         value = "----"
     }
     getWeather(value)
     getBackground(value)
 }
 
-searchBtn.addEventListener("click",search)
+searchBtn.addEventListener("click", search)
 let value = ""
-document.addEventListener("keydown",(e)=>{
-    if(e.key == "Enter"){
+document.addEventListener("keydown", (e) => {
+    if (e.key == "Enter") {
         search()
     } else {
         value += e.key
         // console.log(value);
     }
-    
+
 })
-const getlocation = async ()=>{
+const getlocation = async () => {
     let response = await fetch('https://get.geojs.io/v1/ip/geo.json')
     let data = await response.json()
     // console.log(data)
@@ -58,10 +58,15 @@ getlocation()
 
 const bodyEl = document.getElementById("body")
 
-const getBackground = async (city)=>{
-    let response = await fetch(`https://api.unsplash.com//search/photos?client_id=8Uzk2af1CnbW9ecswytWcW5-qxHL2AF2Czlup00frwA&query=${city}`)
-    let data = await response.json()
+const getBackground = async (city) => {
 
+    if (city == 'Faisalabad' || 'faisalabad') {
+        let response = await fetch(`https://api.unsplash.com//search/photos?client_id=8Uzk2af1CnbW9ecswytWcW5-qxHL2AF2Czlup00frwA&query=faisalabad+clock+tower`)
+        let data = await response.json()
+    } else {
+        let response = await fetch(`https://api.unsplash.com//search/photos?client_id=8Uzk2af1CnbW9ecswytWcW5-qxHL2AF2Czlup00frwA&query=${city}`)
+        let data = await response.json()
+    }
     // console.log(data.results[0].urls.full)
     bodyEl.style.backgroundImage = `url('${data.results[0].urls.full}')`
 
