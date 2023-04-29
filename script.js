@@ -60,7 +60,7 @@ const getWeather = async (value) => {
     skyEl.innerText = `${data.weather[0].main}`
     tempEl.innerText = `Temp: ${data.main.temp}°C`
     minTempEl.innerText = `Min Temp: ${data.main.temp_min}°C`
-    maxTempEl.innerText = `MaxTemp: ${data.main.temp_max} °C`
+    maxTempEl.innerText = `Max Temp: ${data.main.temp_max} °C`
     getTimeZone(data.sys.country)
 }
 
