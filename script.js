@@ -10,51 +10,32 @@ const timeEl = document.getElementById("time")
 const apiKey = "eeccf137789c6df5effe34534a5b2e8c"
 const url = "https://api.openweathermap.org/data/2.5/weather?q="
 
-
-
-
-// setInterval(() => {
-//     getTime()
-// }, 1000);
-
 const getTimeZone = async (country) => {
     const response = await fetch(`https://api.timezonedb.com/v2.1/list-time-zone?key=IYV1N8O6KN5E&format=json&country=${country}`);
     const data = await response.json();
-    // console.log(data)
-    console.log(data.zones[0].zoneName)
+
     zoneName = data.zones[0].zoneName
 
     setInterval(() => {
         getTime(zoneName)
     }, 1000);
 }
-const getTime = (timeZoneInfo)=>{
+const getTime = (timeZoneInfo) => {
     // const timeZoneName = timeZoneInfo
     const date = new Date();
-    // const options = {
-    //     hour: "numeric",
-    //     minute: "numeric",
-    //     second: "numeric",
-    //     hour12: true,
-    //     timeZone: timeZoneInfo
-    //   };
+
     const dateString = date.toLocaleDateString('en-US', { timeZone: timeZoneInfo });
     const timeString = date.toLocaleTimeString('en-US', { timeZone: timeZoneInfo });
     timeEl.innerHTML = "Time: " + timeString;
 
-    console.log("info: " + timeZoneInfo)
     // return timeZoneInfo;
 }
-
-
 
 const getWeather = async (value) => {
 
     let response = await fetch(`${url}${value}&appid=${apiKey}&units=metric`)
     let data = await response.json()
 
-    // console.log(data)
-    // console.log("Country code: " + data.sys.country)
     cityTitle.innerText = value
 
     skyEl.innerText = `${data.weather[0].main}`
@@ -83,19 +64,15 @@ document.addEventListener("keydown", (e) => {
         search()
     } else {
         value += e.key
-        // console.log(value);
     }
 
 })
 const getlocation = async () => {
     let response = await fetch('https://get.geojs.io/v1/ip/geo.json')
     let data = await response.json()
-    // console.log(data)
+
     getWeather(data.city)
     getBackground(data.city)
-    // getTime(data.timezone)
-    // console.log("Time zone: " + data.timezone)
-    console.log(data.city)
 }
 
 getlocation()
@@ -117,25 +94,25 @@ const getBackground = async (city) => {
 
 }
 
-    const timeEl01 = document.getElementById("time01")
-    const timeEl02 = document.getElementById("time02")
-    const timeEl03 = document.getElementById("time03")
+const timeEl01 = document.getElementById("time01")
+const timeEl02 = document.getElementById("time02")
+const timeEl03 = document.getElementById("time03")
 
-const updateTime = ()=>{
-    const pkTime = ()=>{
+const updateTime = () => {
+    const pkTime = () => {
         const date = new Date()
         const dateString = date.toLocaleDateString('en-US', { timeZone: "Asia/Karachi" });
         const timeString = date.toLocaleTimeString('en-US', { timeZone: "Asia/Karachi" });
         timeEl01.innerHTML = "Time PK: " + timeString;
     }
-    
-    const inTime = ()=>{
+
+    const inTime = () => {
         const date = new Date()
         const dateString = date.toLocaleDateString('en-US', { timeZone: "Asia/Kolkata" });
         const timeString = date.toLocaleTimeString('en-US', { timeZone: "Asia/Kolkata" });
         timeEl02.innerHTML = "Time IN: " + timeString;
     }
-    const dbTime = (country)=>{
+    const dbTime = (country) => {
         const date = new Date()
         const dateString = date.toLocaleDateString('en-US', { timeZone: country });
         const timeString = date.toLocaleTimeString('en-US', { timeZone: country });
@@ -145,7 +122,3 @@ const updateTime = ()=>{
     inTime()
     dbTime("Asia/Dubai")
 }
-
-// setInterval(() => {
-//     updateTime()
-// }, 1000);
