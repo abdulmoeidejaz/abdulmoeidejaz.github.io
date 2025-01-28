@@ -1,6 +1,10 @@
-# Rest Countries App
+# Basic Weather App
 
 Explore global weather effortlessly! My [basic weather app](https://basic-weather-app-flax.vercel.app/) delivers real-time data with automatic location detection, manual city searches, temperature insights, sky condition indicators, and accurate local time. Stay informed with a click!
+
+## Demo
+
+Check out the live demo: [Basic Weather App](https://basic-weather-app-flax.vercel.app/)
 
 ## Features:
 - **Automatic Location Detection:** The website seamlessly detects your location and provides real-time weather data for your current surroundings.
